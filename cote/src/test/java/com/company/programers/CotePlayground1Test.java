@@ -1,4 +1,4 @@
-package com.company.store.programers;
+package com.company.programers;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

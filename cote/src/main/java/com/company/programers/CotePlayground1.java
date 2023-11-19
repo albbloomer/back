@@ -1,4 +1,4 @@
-package com.company.store.programers;
+package com.company.programers;
 
 public class CotePlayground1 {
 

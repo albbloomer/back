@@ -1,19 +1,47 @@
 plugins {
-    id 'java'
+    id 'org.asciidoctor.jvm.convert' version '3.3.2'
 }
 
-group 'com.example'
-version '0.0.1-SNAPSHOT'
+ext {
+    set('snippetsDir', file("build/generated-snippets"))
+}
 
-repositories {
-    mavenCentral()
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    asciidoctorExtensions
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation(project(':store-domain'))
+    implementation(project(':store-common'))
+
+    //
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
 }
 
-test {
+tasks.named('test') {
+    outputs.dir snippetsDir
     useJUnitPlatform()
+}
+
+tasks.named('asciidoctor') {
+    configurations 'asciidoctorExtensions'
+    inputs.dir snippetsDir
+    dependsOn test
+}
+
+bootJar {
+    dependsOn asciidoctor
+    copy {
+        from "${asciidoctor.outputDir}"
+        into 'src/main/resources/static/docs'
+    }
 }
