@@ -18,6 +18,10 @@ dependencies {
     implementation(project(':store-common'))
 
     //
+    implementation(project(':store-infrastructure:store-jpa'))
+    implementation(project(':store-infrastructure:store-redis'))
+
+    //
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
     // lombok

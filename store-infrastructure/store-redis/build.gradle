@@ -1,0 +1,14 @@
+bootJar {
+    enabled = false
+}
+jar {
+    enabled = true
+}
+
+dependencies {
+    implementation(project(':store-domain'))
+    implementation(project(':store-common'))
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'com.h2database:h2'
+}

@@ -4,4 +4,8 @@ include 'store-api'
 include 'store-common'
 include 'store-domain'
 include 'store-infrastructure'
+include 'store-infrastructure:store-jpa'
+findProject(':store-infrastructure:store-jpa')?.name = 'store-jpa'
+include 'store-infrastructure:store-redis'
+findProject(':store-infrastructure:store-redis')?.name = 'store-redis'
 
