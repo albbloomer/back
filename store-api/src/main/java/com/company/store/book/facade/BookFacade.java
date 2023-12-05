@@ -12,6 +12,6 @@ public class BookFacade {
     private final BookService bookService;
 
     public void registerBook(final BookRegistrationRequest bookRegistrationRequest) {
-        bookService.RegisterBook(bookRegistrationRequest.toDomain());
+        bookService.registerBook(bookRegistrationRequest.toDomain());
     }
 }

@@ -11,7 +11,12 @@ public class BookService {
 
     private final BookRepository bookRepository;
 
-    public void RegisterBook(final Book book) {
+    public void registerBook(final Book book) {
         bookRepository.save(book);
+    }
+
+    public String test(final Book book) {
+        bookRepository.save(book);
+        return "ok";
     }
 }

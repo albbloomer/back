@@ -21,6 +21,9 @@ dependencies {
     implementation(project(':store-infrastructure:store-jpa'))
     implementation(project(':store-infrastructure:store-redis'))
 
+    // testFixture
+    testImplementation testFixtures(project(':store-domain'))
+
     //
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
