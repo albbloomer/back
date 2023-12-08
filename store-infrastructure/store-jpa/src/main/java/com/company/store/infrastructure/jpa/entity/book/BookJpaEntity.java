@@ -23,6 +23,7 @@ public class BookJpaEntity {
     public BookJpaEntity(String name) {
         this.name = name;
     }
+
     public BookJpaEntity(String name, String author) {
         this.name = name;
         this.author = author;
