@@ -9,7 +9,7 @@ public class MemberJpaEntity {
     @Id
     private Long id;
 
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
     private String name;
 
     protected MemberJpaEntity() {

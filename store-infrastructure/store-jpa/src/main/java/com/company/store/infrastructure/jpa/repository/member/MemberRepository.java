@@ -21,4 +21,9 @@ public class MemberRepository {
 
         return MemberDomainMapper.toDomain(memberJpaEntity);
     }
+
+    @Transactional(readOnly = true)
+    public boolean existsByName(final String name) {
+        return memberJpaRepository.existsByName(name);
+    }
 }
