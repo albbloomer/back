@@ -1,10 +1,24 @@
 package com.company.store.infrastructure.jpa.repository.member;
 
+import com.company.store.domain.member.Member;
+import com.company.store.infrastructure.jpa.entity.member.MemberJpaEntity;
+import com.company.store.infrastructure.jpa.mapper.MemberDomainMapper.MemberDomainMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Repository
 public class MemberRepository {
-    //
+
+    private final MemberJpaRepository memberJpaRepository;
+
+    public MemberRepository(MemberJpaRepository memberJpaRepository) {
+        this.memberJpaRepository = memberJpaRepository;
+    }
+
+    public Member save(final Member member) {
+        MemberJpaEntity memberJpaEntity = memberJpaRepository.save(MemberDomainMapper.toJpaEntity(member));
+
+        return MemberDomainMapper.toDomain(memberJpaEntity);
+    }
 }
