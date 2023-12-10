@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group 'com.company.store'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+
+    implementation 'org.springframework.boot:spring-boot-starter'
+
+    // aws sqs
+    implementation group: 'com.amazonaws', name: 'aws-java-sdk-sqs', version: '1.12.608'
+}
+
+test {
+    useJUnitPlatform()
+}

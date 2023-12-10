@@ -11,3 +11,6 @@ findProject(':store-infrastructure:store-redis')?.name = 'store-redis'
 include 'store-domain:testFixtures'
 findProject(':store-domain:testFixtures')?.name = 'testFixtures'
 
+include 'point-processor'
+include 'point-load'
+
