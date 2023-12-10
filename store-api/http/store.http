@@ -1,0 +1,3 @@
+### 헬스 체크
+GET http://localhost:8080/health-check
+Content-Type: application/json
