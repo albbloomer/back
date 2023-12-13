@@ -1,0 +1,20 @@
+resilience4j:
+  circuit breaker:
+    configs:
+      default:
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        permittedNumberOfCallsInHalfOpenState: 5
+        registerHealthIndicator: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "*"
+
+  health:
+    circuit-breakers:
+      enabled: true
