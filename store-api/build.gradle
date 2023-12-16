@@ -37,6 +37,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-circuitbreaker-resilience4j', version: '3.1.0'
     implementation 'org.springframework.boot:spring-boot-starter-aop'
+
+    //
+    implementation 'org.springframework.retry:spring-retry'
+    implementation 'org.springframework:spring-aspects'
+
 }
 
 tasks.named('test') {
