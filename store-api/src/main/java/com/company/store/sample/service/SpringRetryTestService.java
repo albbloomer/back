@@ -1,6 +1,9 @@
 package com.company.store.sample.service;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.retry.annotation.Recover;
+import org.springframework.retry.support.RetryTemplate;
 import org.springframework.stereotype.Service;
 
 import org.slf4j.Logger;
@@ -54,4 +57,27 @@ public class SpringRetryTestService {
         logger.info("recover: [{}]", exception.getMessage(), exception);
         return "recover cat";
     }
+
+    // case 3 -> retryTemplate
+    @Configuration
+    static class RetryTemplateConfig {
+
+        @Bean
+        public RetryTemplate retryTemplate() {
+            return RetryTemplate.builder()
+                    .maxAttempts(3)
+                    .fixedBackoff(1000L)
+                    .retryOn(RuntimeException.class)
+                    .build();
+        }
+    }
+
+    public String cateImageByTemplate(final Long id) {
+        throw new RuntimeException("Failed to get cat image.");
+    }
+
+    public String recoverByTemplate(final Long id) {
+        return "very_cute_cat_image.png";
+    }
+
 }
