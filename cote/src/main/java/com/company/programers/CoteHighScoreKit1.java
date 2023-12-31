@@ -1,6 +1,7 @@
 package com.company.programers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
@@ -84,6 +85,29 @@ public class CoteHighScoreKit1 {
             // 모든 음식의 스코빌 지수가 K 이상인지 확인
             if (heap.peek() < K) {
                 return -1;
+            }
+
+            return answer;
+        }
+    }
+
+
+    // Todo : k 번째 수
+    /**
+     * <p>
+     * 중용한 부분 <br>
+     * - PriorityQueue 초기화 <br>
+     * - PriorityQueue 내장된 함수
+     * </p>
+     */
+    static class Solution_4 {
+        public int[] solution(int[] array, int[][] commands) {
+            int[] answer = new int[commands.length];
+
+            for(int i=0; i<commands.length; i++){
+                int[] temp = Arrays.copyOfRange(array, commands[i][0]-1, commands[i][1]);
+                Arrays.sort(temp);
+                answer[i] = temp[commands[i][2]-1];
             }
 
             return answer;
