@@ -2,8 +2,9 @@ package com.company.programers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.PriorityQueue;
 
-public class CoteHighScoreKit {
+public class CoteHighScoreKit1 {
 
     // Todo : 완주하지 못한 선수
     /**
@@ -49,6 +50,40 @@ public class CoteHighScoreKit {
             int[] answer = new int[list.size()];
             for (int i = 0; i < answer.length; i++) {
                 answer[i] = list.get(i);
+            }
+
+            return answer;
+        }
+    }
+
+    // Todo : 더 맵게
+    /**
+     * <p>
+     * 중용한 부분 <br>
+     * - PriorityQueue 초기화 <br>
+     * - PriorityQueue 내장된 함수
+     * </p>
+     */
+    static class Solution_3 {
+        public int solution(int[] scoville, int K) {
+            int answer = 0;
+            PriorityQueue<Integer> heap = new PriorityQueue<>();
+
+            for (int scov : scoville) {
+                heap.add(scov);
+            }
+            while (heap.size() > 1 && heap.peek() < K) {
+                int leastSpicy = heap.poll(); // 가장 안 매운 음식
+                int secondLeastSpicy = heap.poll(); // 두 번째로 안 매운 음식
+
+                int mixed = leastSpicy + (secondLeastSpicy * 2);
+                heap.add(mixed);
+                answer++;
+            }
+
+            // 모든 음식의 스코빌 지수가 K 이상인지 확인
+            if (heap.peek() < K) {
+                return -1;
             }
 
             return answer;
