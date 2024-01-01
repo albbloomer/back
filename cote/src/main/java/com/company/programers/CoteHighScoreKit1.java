@@ -113,4 +113,31 @@ public class CoteHighScoreKit1 {
             return answer;
         }
     }
+
+    // Todo : 최소 직사각형
+
+    /**
+     * 중요한 부분 <br>
+     * - Math.max, Math.min  <br>
+     * - 가로 정의, 세로 정의 <br>
+     */
+    static class Solution_5 {
+        public int solution(int[][] sizes) {
+            // 가로를 정의, 세로를 정의
+            int maxGaro = 0;
+            int maxSero = 0;
+
+            for (int[] size : sizes) {
+
+                int garo = Math.max(size[0], size[1]);
+                int sero = Math.min(size[0], size[1]);
+
+                maxGaro = Math.max(garo, maxGaro);
+                maxSero = Math.max(sero, maxSero);
+            }
+
+
+            return maxGaro * maxSero;
+        }
+    }
 }
