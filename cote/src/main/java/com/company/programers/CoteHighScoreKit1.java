@@ -1,9 +1,6 @@
 package com.company.programers;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class CoteHighScoreKit1 {
 
@@ -138,6 +135,69 @@ public class CoteHighScoreKit1 {
 
 
             return maxGaro * maxSero;
+        }
+    }
+
+    // Todo : 체육복
+    static class Solution_6 {
+        public int solution(int n, int[] lost, int[] reserve) {
+            // Todo : 1
+            int answer = n;
+
+            Set<Integer> reserveSet = new HashSet<>();
+            Set<Integer> lostSet = new HashSet<>();
+
+            for (int r : reserve) {
+                reserveSet.add(r);
+            }
+
+            for (int l : lost) {
+                // 여벌 체육복을 가져온 학생이 체육복을 잃어버렸을 경우
+                if (reserveSet.contains(l)) {
+                    reserveSet.remove(l);
+                } else {
+                    lostSet.add(l);
+                }
+            }
+
+            Set<Integer> removedFromLost = new HashSet<>();
+
+            for (int l : lostSet) {
+                if (reserveSet.contains(l - 1)) {
+                    reserveSet.remove(l - 1);
+                    removedFromLost.add(l);
+                } else if (reserveSet.contains(l + 1)) {
+                    reserveSet.remove(l + 1);
+                    removedFromLost.add(l);
+                }
+            }
+
+            // 임시 집합에 있는 요소를 lostSet에서 제거합니다.
+            for (int r : removedFromLost) {
+                lostSet.remove(r);
+            }
+            // Todo : 2
+            int[] people = new int[n];
+            int answer1 = n;
+
+            for (int l : lost)
+                people[l-1]--;
+            for (int r : reserve)
+                people[r-1]++;
+
+            for (int i = 0; i < people.length; i++) {
+                if(people[i] == -1) {
+                    if(i-1>=0 && people[i-1] == 1) {
+                        people[i]++;
+                        people[i-1]--;
+                    }else if(i+1< people.length && people[i+1] == 1) {
+                        people[i]++;
+                        people[i+1]--;
+                    }else
+                        answer1--;
+                }
+            }
+            return answer1;
         }
     }
 }
