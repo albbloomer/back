@@ -200,4 +200,31 @@ public class CoteHighScoreKit1 {
             return answer1;
         }
     }
+
+    // Todo : 타겟 넘버
+    /**
+     * DFS
+     */
+    static class Solution_7 {
+        public int solution(int[] numbers, int target) {
+            return dfs(numbers, 0, 0, target);
+        }
+
+        private int dfs(int[] numbers, int index, int sum, int target) {
+            if (index == numbers.length) {
+                if (sum == target) {
+                    return 1;
+                }
+                return 0;
+            }
+
+            // 현재 숫자를 더하는 경우
+            int count = dfs(numbers, index + 1, sum + numbers[index], target);
+
+            // 현재 숫자를 빼는 경우
+            count += dfs(numbers, index + 1, sum - numbers[index], target);
+
+            return count;
+        }
+    }
 }
