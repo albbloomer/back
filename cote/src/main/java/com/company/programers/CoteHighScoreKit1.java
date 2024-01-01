@@ -227,4 +227,49 @@ public class CoteHighScoreKit1 {
             return count;
         }
     }
+
+
+    // Todo : 입국 심사
+    /**
+     * 이진 탐색
+     */
+    static class solution_8 {
+        public long solution(int n, int[] times) {
+            long answer = Long.MAX_VALUE;
+            long minTime = 1;
+            long maxTime = (long) n * getMax(times);
+
+            while (minTime <= maxTime) {
+                long midTime = (minTime + maxTime) / 2;
+                long peopleProcessed = getPeopleProcessed(times, midTime);
+
+                if (peopleProcessed < n) {
+                    minTime = midTime + 1;
+                } else {
+                    answer = Math.min(answer, midTime);
+                    maxTime = midTime - 1;
+                }
+            }
+
+            return answer;
+        }
+
+        private long getPeopleProcessed(int[] times, long time) {
+            long people = 0;
+            for (int t : times) {
+                people += time / t;
+            }
+            return people;
+        }
+
+        private long getMax(int[] times) {
+            long max = 0;
+            for (int t : times) {
+                if (t > max) {
+                    max = t;
+                }
+            }
+            return max;
+        }
+    }
 }
