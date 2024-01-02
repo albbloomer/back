@@ -30,4 +30,34 @@ public class CoteHighScoreKit2 {
             return answer;
         }
     }
+
+    // Todo : 기능 개발
+    /**
+     * <p>
+     *     Queue
+     * </p>
+     */
+    static class Solution_2 {
+        public int[] solution(int[] progresses, int[] speeds) {
+            Queue<Integer> queue = new LinkedList<>();
+            List<Integer> answerList = new ArrayList<>();
+
+            for (int i = 0; i < progresses.length; i++) {
+                // 각 작업이 완료되는 데 필요한 일수 계산
+                int days = (100 - progresses[i]) / speeds[i];
+                if ((100 - progresses[i]) % speeds[i] != 0) {
+                    days++;
+                }
+                if (!queue.isEmpty() && queue.peek() < days) {
+                    // 이전 작업보다 더 오래 걸리는 작업을 만났을 때
+                    answerList.add(queue.size());
+                    queue.clear();
+                }
+                queue.add(days);
+            }
+            answerList.add(queue.size()); // 마지막 배포 추가
+
+            return answerList.stream().mapToInt(i -> i).toArray();
+        }
+    }
 }
