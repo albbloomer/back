@@ -60,4 +60,17 @@ public class CoteHighScoreKit2 {
             return answerList.stream().mapToInt(i -> i).toArray();
         }
     }
+
+    // Todo : 디스크 컨트롤러
+    /**
+     * <p>
+     *     Queue
+     * </p>
+     */
+    static class Solution_3 {
+        public int solution(int[][] jobs) {
+            int answer = 0;
+            return answer;
+        }
+    }
 }
