@@ -113,4 +113,29 @@ public class CoteHighScoreKit2 {
             }
         }
     }
+
+    // Todo : 가장 큰수 - 정렬
+    static class Solution_4 {
+        public String solution(int[] numbers) {
+            String[] numStrs = new String[numbers.length];
+
+            for (int i = 0; i < numbers.length; i++) {
+                numStrs[i] = String.valueOf(numbers[i]);
+            }
+
+            Arrays.sort(numStrs, (a, b) -> (b + a).compareTo(a + b)); // 내림차순
+
+
+            if (numStrs[0].equals("0")) {
+                return "0";
+            }
+
+            StringBuilder sb = new StringBuilder();
+            for (String num : numStrs) {
+                sb.append(num);
+            }
+
+            return sb.toString();
+        }
+    }
 }
