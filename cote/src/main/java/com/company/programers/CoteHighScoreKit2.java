@@ -326,4 +326,43 @@ public class CoteHighScoreKit2 {
             return stack.isEmpty();
         }
     }
+
+    // Todo : stack - 소수 찾기
+    static class Solution_11 {
+        public int solution(String numbers) {
+            Set<Integer> numberSet = new HashSet<>();
+            permutation("", numbers, numberSet);
+
+            int count = 0;
+            for (int number : numberSet) {
+                if (isPrime(number)) {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        // Todo : 순열 굉장히 중요
+        private void permutation(String prefix, String str, Set<Integer> set) {
+            int n = str.length();
+            if (!prefix.equals("")) {
+                set.add(Integer.parseInt(prefix));
+            }
+            for (int i = 0; i < n; i++) {
+                permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i + 1, n), set);
+            }
+        }
+
+        // 소수점 확인하는 메소드
+        private boolean isPrime(int number) {
+            if (number < 2) return false;
+            for (int i = 2; i <= Math.sqrt(number); i++) {
+                if (number % i == 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
 }
