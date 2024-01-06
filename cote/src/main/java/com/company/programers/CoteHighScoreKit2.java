@@ -232,4 +232,39 @@ public class CoteHighScoreKit2 {
             }
         }
     }
+
+    // Todo : 전화버호 목록 -> 해쉬, 탐색
+    static class Solution_8 {
+        public boolean solution_HASH(String[] phone_book) {
+            Set<String> phoneSet = new HashSet<>();
+
+            // 전화번호부의 모든 번호를 해시 세트에 추가
+            for (String phone : phone_book) {
+                phoneSet.add(phone);
+            }
+
+            // 각 번호의 모든 가능한 접두어가 해시 세트에 있는지 확인
+            for (String phone : phone_book) {
+                for (int i = 0; i < phone.length(); i++) {
+                    if (phoneSet.contains(phone.substring(0, i))) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        public boolean solution(String[] phone_book) {
+            Arrays.sort(phone_book);
+
+            for (int i = 0; i < phone_book.length - 1; i++) {
+                if (phone_book[i + 1].startsWith(phone_book[i])) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    }
 }
