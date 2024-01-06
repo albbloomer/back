@@ -267,4 +267,26 @@ public class CoteHighScoreKit2 {
             return true;
         }
     }
+
+    // Todo : 의상
+    static class Solution_9 {
+        public int solution(String[][] clothes) {
+            Map<String, Integer> clothesMap = new HashMap<>();
+
+            // 각 종류별 옷의 개수를 계산
+            for (String[] cloth : clothes) {
+                String type = cloth[1];
+                clothesMap.put(type, clothesMap.getOrDefault(type, 0) + 1);
+            }
+
+            // 각 종류별 옷을 입는 경우의 수를 계산
+            int answer = 1;
+            for (int count : clothesMap.values()) {
+                answer *= (count + 1); // Todo : +1을 하는 이유 --> 그 type 을 안입었을 경우
+            }
+
+            // 모든 종류의 옷을 입지 않는 경우를 제외
+            return answer - 1; // Todo : 다벗은 경우
+        }
+    }
 }
