@@ -289,4 +289,41 @@ public class CoteHighScoreKit2 {
             return answer - 1; // Todo : 다벗은 경우
         }
     }
+
+    // Todo : stack - 올바른 괄호
+    static class Solution_10 {
+        boolean solution(String s) {
+            int count = 0;
+
+            for (char c : s.toCharArray()) {
+                if (c == '(') {
+                    count++;
+                } else if (c == ')') {
+                    count--;
+                    if (count < 0) {
+                        return false;
+                    }
+                }
+            }
+
+            return count == 0;
+        }
+
+        boolean solution_Stack(String s) {
+            Stack<Character> stack = new Stack<>();
+
+            for (char c : s.toCharArray()) {
+                if (c == '(') {
+                    stack.push(c);
+                } else {
+                    if (stack.isEmpty()) {
+                        return false;
+                    }
+                    stack.pop();
+                }
+            }
+
+            return stack.isEmpty();
+        }
+    }
 }
