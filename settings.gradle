@@ -13,4 +13,5 @@ findProject(':store-domain:testFixtures')?.name = 'testFixtures'
 
 include 'point-processor'
 include 'point-load'
+include 'external-api'
 
