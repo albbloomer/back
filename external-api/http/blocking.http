@@ -1,0 +1,4 @@
+# 'sync=true'이면 동기 방식, 'sync=false'이면 비동기 방식으로 처리합니다.
+### 서버 동작 방식 선택 (동기/비동기)
+GET http://localhost:8080/blocking?isSync=true
+Content-Type: application/json
