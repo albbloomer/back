@@ -1,6 +1,6 @@
-package com.company.store.sample.controller;
+package com.company.store.practiceandrefactoring.controller;
 
-import com.company.store.sample.service.SpringRetryTestService;
+import com.company.store.practiceandrefactoring.service.SpringRetryTestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

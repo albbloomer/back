@@ -1,4 +1,4 @@
-package com.company.store.sample.service;
+package com.company.store.practiceandrefactoring.service;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

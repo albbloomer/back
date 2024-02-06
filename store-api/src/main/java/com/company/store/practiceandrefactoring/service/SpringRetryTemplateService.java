@@ -1,4 +1,4 @@
-package com.company.store.sample.service;
+package com.company.store.practiceandrefactoring.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.retry.support.RetryTemplate;

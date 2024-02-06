@@ -1,4 +1,4 @@
-package com.company.store.sample.controller;
+package com.company.store.practiceandrefactoring.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
