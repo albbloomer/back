@@ -1,8 +1,11 @@
 rootProject.name = 'back'
 include 'cote'
 include 'store-api'
+include 'store-batch'
+
 include 'store-common'
 include 'store-domain'
+
 include 'store-infrastructure'
 include 'store-infrastructure:store-jpa'
 findProject(':store-infrastructure:store-jpa')?.name = 'store-jpa'

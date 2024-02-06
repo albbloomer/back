@@ -1,0 +1,11 @@
+dependencies {
+
+    implementation(project(':store-domain'))
+    implementation(project(':store-common'))
+    implementation(project(':store-infrastructure:store-jpa'))
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    implementation 'org.springframework.boot:spring-boot-starter-batch'
+    testImplementation 'org.springframework.batch:spring-batch-test:'
+}
