@@ -1,6 +1,7 @@
 package com.company.external.fetcher.webclient;
 
-import org.springframework.stereotype.Component;
+import com.company.external.fetcher.Adapter;
 
+@Adapter
 public class WebClientFetcher {
 }
