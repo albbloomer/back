@@ -3,3 +3,17 @@
 api:
   github:
     list: https://api.github.com
+
+
+resilience4j.retry:
+  configs:
+    default:
+      maxAttempts: 3
+      waitDuration: 1000
+      retryExceptions:
+        - com.company.external.exception.RetryException   # retryExceptions에 지정된 예외는 재시도
+      ignoreExceptions:
+      #  - com.company.external.exception.IgnoreException  # retryExceptions에 지정되지 않은 예외는 ignoreExceptions로 처리됨
+  instances:
+    simpleRetryConfig:
+      baseConfig: default
