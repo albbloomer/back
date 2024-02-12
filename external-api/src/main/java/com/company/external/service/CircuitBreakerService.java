@@ -2,6 +2,7 @@ package com.company.external.service;
 
 import com.company.external.exception.IgnoreException;
 import com.company.external.exception.RecordException;
+import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,9 +18,24 @@ public class CircuitBreakerService {
         return callAnotherServer(param);
     }
 
-    private String fallback(String param, Exception ex) {
-        // fallback은 ignoreException이 발생해도 실행된다.
-        log.info("fallback! your request is " + param);
+//    private String fallback(String param, Exception ex) {
+//        // fallback은 ignoreException이 발생해도 실행된다.
+//        log.info("fallback! your request is " + param);
+//        return "Recovered: " + ex.toString();
+//    }
+
+    private String fallback(String param, RecordException ex) {
+        log.info("RecordException fallback! your request is " + param);
+        return "Recovered: " + ex.toString();
+    }
+
+    private String fallback(String param, IgnoreException ex) {
+        log.info("IgnoreException fallback! your request is " + param);
+        return "Recovered: " + ex.toString();
+    }
+
+    private String fallback(String param, CallNotPermittedException ex) {
+        log.info("CallNotPermittedException fallback! your request is " + param);
         return "Recovered: " + ex.toString();
     }
 
