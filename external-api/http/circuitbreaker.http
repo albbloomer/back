@@ -1,0 +1,3 @@
+### retry
+GET http://localhost:8080/circuit/api-call?param=a
+Content-Type: application/json
