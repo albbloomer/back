@@ -1,6 +1,8 @@
 package com.company.store.infrastructure.jpa.entity.book;
 
+import com.company.store.common.exception.ValidateDataException;
 import com.company.store.infrastructure.jpa.base.BaseJpaEntity;
+import io.micrometer.common.util.StringUtils;
 import jakarta.persistence.*;
 
 @Entity
@@ -36,7 +38,8 @@ public class BookJpaEntity extends BaseJpaEntity {
         this.name = name;
     }
 
-    public BookJpaEntity(Integer id, String name, String author) {
+    public BookJpaEntity(final Integer id, final String name, final String author) {
+        validateBook(id, name, author);
         this.id = id;
         this.name = name;
         this.author = author;
@@ -50,4 +53,9 @@ public class BookJpaEntity extends BaseJpaEntity {
         return name;
     }
 
+    public void validateBook(final Integer id, final String name, final String author) {
+        if (StringUtils.isBlank(name)) {
+            throw new ValidateDataException("책 생성에 실패했습니다.");
+        }
+    }
 }
