@@ -1,13 +1,15 @@
 package com.company.store.infrastructure.jpa.entity.book;
 
+import com.company.store.infrastructure.jpa.base.BaseJpaEntity;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "book")
-public class BookJpaEntity {
+public class BookJpaEntity extends BaseJpaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "book_id", nullable = false)
     private Integer id;
 
     @Column(name = "name", length = 30, nullable = false)
