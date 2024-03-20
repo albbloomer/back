@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SessionController {
 
-    @GetMapping("/value/{value}")
+    @GetMapping("/attribute/{attribute}/value/{value}")
     public ResponseEntity<Object> setSessionResult(
             HttpSession httpSession,
+            @PathVariable("attribute") String attribute,
             @PathVariable("value") String value
     ) {
-        Object attribute = httpSession.getAttribute("value");
+        Object session = httpSession.getAttribute(attribute);
 
         /*
          * # spring.session.store-type 을 통해 spring session 에 대한 store type 을 명시적으로 구성하는 것은 더 이상 지원하지 않는다.
@@ -24,9 +25,16 @@ public class SessionController {
          * # 3. Hazelcast
          * # 4. MongoDB
          * # Redis, JDBC, Hazelcast, MongoDB 순서 / 혹은 SessionRepository 를 구현
+         *
+         * 127.0.0.1:6379> hkeys "spring:session:sessions:1f02edf6-af33-48dd-aa59-9123a89433d2"
+         *   1) "sessionAttr:a"
+         *   2) "creationTime"
+         *   3) "lastAccessedTime"
+         *   4) "maxInactiveInterval"
+         *   5) "sessionAttr:b"
          */
-        httpSession.setAttribute("value", value);
-        return ResponseEntity.ok(attribute);
+        httpSession.setAttribute(attribute, value);
+        return ResponseEntity.ok(session);
     }
 
     @GetMapping("/session")
