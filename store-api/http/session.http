@@ -1,3 +1,7 @@
 ###
 GET http://localhost:8080/session
 Content-Type: application/json
+
+###
+GET http://localhost:8080/value/pig
+Content-Type: application/json
