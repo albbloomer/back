@@ -10,6 +10,8 @@ import org.springframework.session.web.context.AbstractHttpSessionApplicationIni
  *
  */
 
+// @EnableSpringHttpSession WAS(Tomcat) JVM  내장 톰캣이 기본적으로 사용하는 세션 저장소는 일반적으로 JVM 메모리
+
 @Configuration
 @EnableRedisHttpSession
 public class SessionConfig extends AbstractHttpSessionApplicationInitializer {
