@@ -20,6 +20,7 @@ dependencies {
     //
     implementation(project(':store-infrastructure:store-jpa'))
     implementation(project(':store-infrastructure:store-redis'))
+    implementation(project(':store-infrastructure:store-mongo'))
 
     // testFixture
     testImplementation testFixtures(project(':store-domain'))
