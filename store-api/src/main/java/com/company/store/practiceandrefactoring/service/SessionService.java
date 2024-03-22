@@ -1,8 +1,10 @@
 package com.company.store.practiceandrefactoring.service;
 
+import com.company.store.practiceandrefactoring.dto.UserSession;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +21,7 @@ public class SessionService {
         this.httpSession = httpSession;
     }
 
+    // Todo : hashMap 으로
     public void userSession(final String zuid) {
 
         Map<String, Object> userHashData = new HashMap<>();
@@ -35,6 +38,17 @@ public class SessionService {
         activity.put("last_page_visited", "/products");
         userHashData.put("activity", activity);
         httpSession.setAttribute(SessionConstant.userKey(zuid), userHashData);
+    }
+
+    // Todo : Dto 로
+    public void userSessionByDto(final String zuid) {
+
+        List<UserSession.Cart> cart = new ArrayList<>();
+        cart.add(new UserSession.Cart(1L,"minyul_1"));
+        cart.add(new UserSession.Cart(2L,"minyul_2"));
+        UserSession userSession = new UserSession("zuid", LocalDateTime.now(), cart);
+
+        httpSession.setAttribute(SessionConstant.userKey(zuid) + "dto", userSession);
     }
 
     /**

@@ -10,6 +10,10 @@ Content-Type: application/json
 GET http://localhost:8080/attribute/b/value/bBalue
 Content-Type: application/json
 
-###
-GET http://localhost:8080/session-key/yeon
+### basic
+GET http://localhost:8080/session-key/yeon?type=default
+Content-Type: application/json
+
+### dto
+GET http://localhost:8080/session-key/yeon?type=dto
 Content-Type: application/json
