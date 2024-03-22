@@ -9,3 +9,4 @@
 [external client api programing](https://github.com/albbloomer/back/tree/main/external-api/src/main/java/com/company/external) <br>
 [retry + circuitbreaker](https://github.com/albbloomer/back/tree/main/external-api/src/main/java/com/company/external/controller) <br>
 caffeine cache vs ehcache <br>
+[Spring Session](https://github.com/albbloomer/back/blob/main/store-api/src/main/java/com/company/store/practiceandrefactoring/controller/SessionController.java) <br>
