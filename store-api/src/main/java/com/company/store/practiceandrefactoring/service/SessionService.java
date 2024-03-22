@@ -3,6 +3,11 @@ package com.company.store.practiceandrefactoring.service;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class SessionService {
 
@@ -15,7 +20,21 @@ public class SessionService {
     }
 
     public void userSession(final String zuid) {
-        httpSession.setAttribute(SessionConstant.userKey(zuid), "value");
+
+        Map<String, Object> userHashData = new HashMap<>();
+
+        List<String> cart = new ArrayList<>();
+        cart.add("item1");
+        cart.add("item2");
+        cart.add("item3");
+        userHashData.put("cart", cart);
+
+        // 최근 활동 정보 세션에 저장
+        Map<String, String> activity = new HashMap<>();
+        activity.put("last_login", "2024-03-25T10:00:00");
+        activity.put("last_page_visited", "/products");
+        userHashData.put("activity", activity);
+        httpSession.setAttribute(SessionConstant.userKey(zuid), userHashData);
     }
 
     /**

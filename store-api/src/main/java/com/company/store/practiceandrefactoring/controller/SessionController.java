@@ -1,5 +1,6 @@
 package com.company.store.practiceandrefactoring.controller;
 
+import com.company.store.practiceandrefactoring.service.SessionService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +9,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class SessionController {
+
+    private final SessionService sessionService;
+
+    public SessionController(
+            SessionService sessionService
+    ) {
+        this.sessionService = sessionService;
+    }
+
+    @GetMapping("/session-key/{zuid}")
+    public String setSession(@PathVariable String zuid) {
+        sessionService.userSession(zuid);
+        return "ok";
+    }
 
     @GetMapping("/attribute/{attribute}/value/{value}")
     public ResponseEntity<Object> setSessionResult(

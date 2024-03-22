@@ -9,3 +9,7 @@ Content-Type: application/json
 ###
 GET http://localhost:8080/attribute/b/value/bBalue
 Content-Type: application/json
+
+###
+GET http://localhost:8080/session-key/yeon
+Content-Type: application/json
