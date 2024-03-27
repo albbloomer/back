@@ -1,10 +1,16 @@
-package com.company.store.infrastructure.mongo.reword.entity;
+package com.company.store.infrastructure.mongo.reward.entity;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.mapping.FieldType;
 
-@Document(collection = "reward-mission-group")
-public class RewordGroup extends BaseTimeEntity{
+@Document(collection = "reward-group")
+public class RewardGroup extends BaseTimeEntity{
+
+    @Id
+    @Field(name = "_id", targetType = FieldType.OBJECT_ID)
+    protected String id;
 
     @Field(name = "group_name")
     private String name;
