@@ -1,6 +1,6 @@
 spring:
   profiles:
-    include: jpa, redis
+    include: jpa, redis, mongo
     group:
       local:
         - circuit
