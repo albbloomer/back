@@ -1,4 +1,4 @@
-package com.company.store.infrastructure.jpa.mapper.MemberDomainMapper;
+package com.company.store.infrastructure.jpa.mapper.memberdomainmapper;
 
 import com.company.store.domain.member.Member;
 import com.company.store.infrastructure.jpa.entity.member.MemberJpaEntity;

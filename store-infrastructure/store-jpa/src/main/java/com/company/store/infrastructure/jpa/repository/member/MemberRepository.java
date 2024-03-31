@@ -2,7 +2,7 @@ package com.company.store.infrastructure.jpa.repository.member;
 
 import com.company.store.domain.member.Member;
 import com.company.store.infrastructure.jpa.entity.member.MemberJpaEntity;
-import com.company.store.infrastructure.jpa.mapper.MemberDomainMapper.MemberDomainMapper;
+import com.company.store.infrastructure.jpa.mapper.memberdomainmapper.MemberDomainMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
