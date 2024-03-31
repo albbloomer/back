@@ -11,7 +11,7 @@ GET http://localhost:8080/attribute/b/value/bBalue
 Content-Type: application/json
 
 ### basic
-GET http://localhost:8080/session-key/yeon?type=default
+GET http://localhost:8080/session-key/yul?type=default
 Content-Type: application/json
 
 ### dto

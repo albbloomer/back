@@ -52,6 +52,22 @@ public class SessionController {
          *   3) "lastAccessedTime"
          *   4) "maxInactiveInterval"
          *   5) "sessionAttr:b"
+
+           사용자 1)
+         * spring:session:sessions:cd87281f-7c48-4435-a0c8-34bba7535746
+         * sessionAttr:USER_SESSION_yeon
+         * lastAccessedTime
+         * maxInactiveInterval
+         * sessionAttr:USER_SESSION_yul
+         * creationTime
+
+*          사용자 2)
+         * spring:session:sessions:5d7c3f22-9b1d-4e3a-b14c-7a9b4d80e63e
+         * sessionAttr:USER_SESSION_john
+         * lastAccessedTime
+         * maxInactiveInterval
+         * sessionAttr:USER_SESSION_emily
+         * creationTime
          */
         httpSession.setAttribute(attribute, value);
         return ResponseEntity.ok(session);
