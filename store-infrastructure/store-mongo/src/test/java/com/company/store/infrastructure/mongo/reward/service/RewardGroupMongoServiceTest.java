@@ -1,6 +1,6 @@
 package com.company.store.infrastructure.mongo.reward.service;
 
-import com.company.store.infrastructure.mongo.reward.entity.RewardGroupEntity;
+import com.company.store.domain.reward.RewardGroup;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,7 +33,7 @@ class RewardGroupMongoServiceTest {
              */
 
             // when
-            List<RewardGroupEntity> rewardGroups = rewardGroupMongoService.getAllRewardGroups();
+            List<RewardGroup> rewardGroups = rewardGroupMongoService.getAllRewardGroups();
 
             // then
             assertThat(rewardGroups.size()).isEqualTo(3);
