@@ -14,7 +14,7 @@ caffeine cache vs ehcache <br>
 
 <h2> why ? </h2><br>
 
-ex ) 왜? 이 기술을 쓰는가 ? 왜 이렇게 구현하는가 ? <br>
+왜? 이 기술을 쓰는가 ? 왜 이렇게 구현하는가 ? <br>
 항상 기술을 적용하고 코드를 작성할 때, 이유를 적는 습관을 가질 것 <br>
 
 1. Record 키워드를 왜 Request, Response DTO 에 쓰는 이유는 ?
