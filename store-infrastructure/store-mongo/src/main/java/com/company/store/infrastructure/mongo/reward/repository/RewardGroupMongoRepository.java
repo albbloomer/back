@@ -1,8 +1,8 @@
 package com.company.store.infrastructure.mongo.reward.repository;
 
-import com.company.store.infrastructure.mongo.reward.entity.RewardGroup;
+import com.company.store.infrastructure.mongo.reward.entity.RewardGroupEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface RewardGroupMongoRepository extends MongoRepository<RewardGroup, String> {
+public interface RewardGroupMongoRepository extends MongoRepository<RewardGroupEntity, String> {
     //
 }

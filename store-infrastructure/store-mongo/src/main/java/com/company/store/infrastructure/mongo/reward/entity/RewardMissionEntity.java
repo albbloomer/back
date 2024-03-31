@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Document(collection = "reward-mission")
-public class RewardMission extends BaseTimeEntity {
+public class RewardMissionEntity extends BaseTimeEntity {
 
     @Id
     @Field(name = "_id", targetType = FieldType.OBJECT_ID)
@@ -31,6 +31,29 @@ public class RewardMission extends BaseTimeEntity {
     private Boolean activation;
 
     @Field(name = "quest")
-    private List<RewardQuest> quest;
+    private List<RewardQuestEntity> quest;
 
+    public String getId() {
+        return id;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public BigDecimal getPoint() {
+        return point;
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public Boolean getActivation() {
+        return activation;
+    }
 }

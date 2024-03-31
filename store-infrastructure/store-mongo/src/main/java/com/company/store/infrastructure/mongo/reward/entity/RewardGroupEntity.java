@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 
 @Document(collection = "reward-group")
-public class RewardGroup extends BaseTimeEntity{
+public class RewardGroupEntity extends BaseTimeEntity{
 
     @Id
     @Field(name = "_id", targetType = FieldType.OBJECT_ID)
@@ -26,4 +26,28 @@ public class RewardGroup extends BaseTimeEntity{
 
     @Field(name = "is_deleted")
     private Boolean isDeleted;
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public String getModifier() {
+        return modifier;
+    }
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
 }
