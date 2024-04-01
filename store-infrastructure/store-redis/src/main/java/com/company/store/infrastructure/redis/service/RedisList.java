@@ -13,21 +13,21 @@ public class RedisList {
 
     @Qualifier(value = "redisAsyncCommands")
     private final RedisAsyncCommands<String, Object> redisAsyncCommands;
-    @Qualifier(value = "financeRedisTemplate")
-    private final RedisTemplate<String, Object> financeRedisTemplate;
+    @Qualifier(value = "redisTemplate")
+    private final RedisTemplate<String, Object> redisTemplate;
 
-    public RedisList(RedisAsyncCommands<String, Object> redisAsyncCommands, RedisTemplate<String, Object> financeRedisTemplate) {
+    public RedisList(RedisAsyncCommands<String, Object> redisAsyncCommands, RedisTemplate<String, Object> redisTemplate) {
         this.redisAsyncCommands = redisAsyncCommands;
-        this.financeRedisTemplate = financeRedisTemplate;
+        this.redisTemplate = redisTemplate;
     }
 
     public void lPush(String k, Object v) {
-        ListOperations<String, Object> list = financeRedisTemplate.opsForList();
+        ListOperations<String, Object> list = redisTemplate.opsForList();
         list.rightPush(k, v);
     }
 
     public List<Object> lRange(String k, long l, long l1) {
-        ListOperations<String, Object> list = financeRedisTemplate.opsForList();
+        ListOperations<String, Object> list = redisTemplate.opsForList();
         return list.range(k, l, l1);
     }
 

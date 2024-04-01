@@ -18,12 +18,12 @@ public class RedisHash {
 
     @Qualifier(value = "redisAsyncCommands")
     private final RedisAsyncCommands<String, Object> redisAsyncCommands;
-    @Qualifier(value = "financeRedisTemplate")
-    private final RedisTemplate<String, Object> financeRedisTemplate;
+    @Qualifier(value = "redisTemplate")
+    private final RedisTemplate<String, Object> redisTemplate;
 
-    public RedisHash(RedisAsyncCommands<String, Object> redisAsyncCommands, RedisTemplate<String, Object> financeRedisTemplate) {
+    public RedisHash(RedisAsyncCommands<String, Object> redisAsyncCommands, RedisTemplate<String, Object> redisTemplate) {
         this.redisAsyncCommands = redisAsyncCommands;
-        this.financeRedisTemplate = financeRedisTemplate;
+        this.redisTemplate = redisTemplate;
     }
 
     public void put(String key, Map<String, Object> hashKeyToValue) {
@@ -44,7 +44,7 @@ public class RedisHash {
     }
 
     public Cursor<Map.Entry<Object, Object>> scan(String key, ScanOptions options) {
-        return financeRedisTemplate.opsForHash()
+        return redisTemplate.opsForHash()
                 .scan(key,options);
     }
 }

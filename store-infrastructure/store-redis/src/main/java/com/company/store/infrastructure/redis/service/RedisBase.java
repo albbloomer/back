@@ -16,76 +16,76 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class RedisBase {
 
-    @Qualifier(value = "financeRedisTemplate")
-    private final RedisTemplate<String, Object> financeRedisTemplate;
+    @Qualifier(value = "redisTemplate")
+    private final RedisTemplate<String, Object> redisTemplate;
 
-    public RedisBase(RedisTemplate<String, Object> financeRedisTemplate) {
-        this.financeRedisTemplate = financeRedisTemplate;
+    public RedisBase(RedisTemplate<String, Object> redisTemplate) {
+        this.redisTemplate = redisTemplate;
     }
 
     public void delete(String key) {
-        financeRedisTemplate.delete(key);
+        redisTemplate.delete(key);
     }
 
     public void delete(Collection<String> keys) {
-        financeRedisTemplate.delete(keys);
+        redisTemplate.delete(keys);
     }
 
     public byte[] dump(String key) {
-        return financeRedisTemplate.dump(key);
+        return redisTemplate.dump(key);
     }
 
     public Boolean hashKey(String key) {
-        return financeRedisTemplate.hasKey(key);
+        return redisTemplate.hasKey(key);
     }
 
     public Boolean expire(String key, Long timeout, TimeUnit unit) {
-        return financeRedisTemplate.expire(key, timeout, unit);
+        return redisTemplate.expire(key, timeout, unit);
     }
 
     public Boolean expireAt(String key, Date date) {
-        return financeRedisTemplate.expireAt(key, date);
+        return redisTemplate.expireAt(key, date);
     }
 
     public Set<String> keys(String pattern) {
-        return financeRedisTemplate.keys(pattern);
+        return redisTemplate.keys(pattern);
     }
 
     public Boolean move(String key, Integer dbIndex) {
-        return financeRedisTemplate.move(key, dbIndex);
+        return redisTemplate.move(key, dbIndex);
     }
 
     public Boolean persist(String key) {
-        return financeRedisTemplate.persist(key);
+        return redisTemplate.persist(key);
     }
 
     public Long getExpire(String key, TimeUnit unit) {
-        return financeRedisTemplate.getExpire(key, unit);
+        return redisTemplate.getExpire(key, unit);
     }
 
     public Long getExpire(String key) {
-        return financeRedisTemplate.getExpire(key);
+        return redisTemplate.getExpire(key);
     }
 
     public String randomKey() {
-        return financeRedisTemplate.randomKey();
+        return redisTemplate.randomKey();
     }
 
     public void rename(String oldKey, String newKey) {
-        financeRedisTemplate.rename(oldKey, newKey);
+        redisTemplate.rename(oldKey, newKey);
     }
 
     public Boolean renameIfAbsent(String oldKey, String newKey) {
-        return financeRedisTemplate.renameIfAbsent(oldKey, newKey);
+        return redisTemplate.renameIfAbsent(oldKey, newKey);
     }
 
     public DataType type(String key) {
-        return financeRedisTemplate.type(key);
+        return redisTemplate.type(key);
     }
 
     public Cursor<byte[]> scan(String pattern, Long count) {
         return Objects.requireNonNull(
-                financeRedisTemplate.getConnectionFactory())
+                redisTemplate.getConnectionFactory())
         .getConnection()
         .scan(ScanOptions.scanOptions().match(pattern).count(count)
                 .build());
