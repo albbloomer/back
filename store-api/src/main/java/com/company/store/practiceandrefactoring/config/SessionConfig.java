@@ -1,8 +1,15 @@
 package com.company.store.practiceandrefactoring.config;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.session.web.context.AbstractHttpSessionApplicationInitializer;
+import org.springframework.session.web.http.HttpSessionIdResolver;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * 세션 연습 <br>
@@ -15,5 +22,31 @@ import org.springframework.session.web.context.AbstractHttpSessionApplicationIni
 @Configuration
 @EnableRedisHttpSession
 public class SessionConfig extends AbstractHttpSessionApplicationInitializer {
-    //
+
+    @Bean
+    public HttpSessionIdResolver httpSessionIdResolver() {
+        return new CustomHttpSessionIdResolver();
+    }
+
+    static class CustomHttpSessionIdResolver implements HttpSessionIdResolver {
+
+        @Override
+        public List<String> resolveSessionIds(HttpServletRequest request) {
+            String zuid = request.getParameter("zuid");
+            if (zuid != null) {
+                return Collections.singletonList("zuid:" + zuid);
+            }
+            return Collections.emptyList();
+        }
+
+        @Override
+        public void setSessionId(HttpServletRequest request, HttpServletResponse response, String sessionId) {
+            //
+        }
+
+        @Override
+        public void expireSession(HttpServletRequest request, HttpServletResponse response) {
+            //
+        }
+    }
 }

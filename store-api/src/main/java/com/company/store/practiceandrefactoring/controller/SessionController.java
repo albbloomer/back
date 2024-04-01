@@ -78,4 +78,10 @@ public class SessionController {
         Object attribute = httpSession.getAttribute("value");
         return ResponseEntity.ok(attribute);
     }
+
+    @GetMapping("/user/my-page")
+    public ResponseEntity<String> userMyPage(HttpSession session) {
+        String zuid = (String) session.getAttribute("zuid");
+        return ResponseEntity.ok(zuid);
+    }
 }
