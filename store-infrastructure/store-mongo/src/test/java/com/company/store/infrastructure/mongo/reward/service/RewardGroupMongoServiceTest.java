@@ -38,5 +38,15 @@ class RewardGroupMongoServiceTest {
             // then
             assertThat(rewardGroups.size()).isEqualTo(3);
         }
+
+        @Test
+        void MongoTemplate로도_정상적으로_데이터를_가져온다() {
+
+            // when
+            List<RewardGroup> rewardGroups = rewardGroupMongoService.getAllRewardGroupsWithMongoTemplate();
+
+            // then
+            assertThat(rewardGroups.size()).isEqualTo(3);
+        }
     }
 }
