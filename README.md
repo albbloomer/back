@@ -1,8 +1,8 @@
-<h2> why ? </h2><br>
+<h2> why ? </h2>
 
-[왜 이 기술, 코딩을 했는가?](https://github.com/albbloomer/whytech)
+[why ? 어떠한 이유로 이러한 기술, 코딩을 선택했는가?](https://github.com/albbloomer/whytech)
 
-<h2> Section </h2><br>
+<h2> Section </h2>
 
 [cote](https://github.com/albbloomer/back/tree/boilerplate/cote) <br>
 [multi module boilerplate](https://github.com/albbloomer/back/tree/boilerplate) <br>
