@@ -1,3 +1,6 @@
+<h2> why ? </h2><br>
+
+[왜 이 기술, 코딩을 했는가?](https://github.com/albbloomer/whytech)
 
 <h2> Section </h2><br>
 
@@ -12,6 +15,3 @@ caffeine cache vs ehcache <br>
 [Spring Session](https://github.com/albbloomer/back/blob/main/store-api/src/main/java/com/company/store/practiceandrefactoring/controller/SessionController.java) <br>
 [Spring Data Mongo](https://github.com/albbloomer/back/tree/main/store-infrastructure/store-mongo/src/main/java/com/company/store/infrastructure/mongo) <br>
 
-<h2> why ? </h2><br>
-
-[왜 이 기술, 코딩을 했는가?](https://github.com/albbloomer/whytech)
