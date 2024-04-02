@@ -1,1 +1,1 @@
-insert into member (name,id) values ('savedminyul', 244L);
+insert into member (name) values ('savedminyul');
