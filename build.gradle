@@ -21,7 +21,7 @@ subprojects {
 	apply plugin: 'io.spring.dependency-management'
 
 	// store-domain += testFixtures 추가하기 위한
-	apply plugin: 'java-test-fixtures'
+	// apply plugin: 'java-test-fixtures' 전역이라 제거
 
 	configurations {
 		compileOnly {
