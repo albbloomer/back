@@ -1,6 +1,9 @@
 package com.company.external.controller;
 
 import com.company.external.service.CircuitBreakerService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -8,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/")
+@Tag(name = "Circuit Breaker Controller", description = "디테일")
 public class CircuitBreakerController {
 
     private final CircuitBreakerService circuitBreakerService;
@@ -24,6 +28,7 @@ public class CircuitBreakerController {
      *  변환된 half_open 에서 다시한번 호출하면 정상적으로 트래픽이 들어온다. <br>
      *  - 만약, 여기서 계속적인 exception 이 나면 다시 open 으로 되며 반대인 경우에는 close 로 상태르 회복한다. <br>
      */
+    @Operation(summary = "api call", description = "api test API")
     @GetMapping("/circuit/api-call")
     public String apiCall(@RequestParam String param) throws InterruptedException {
         return circuitBreakerService.process(param);
