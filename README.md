@@ -16,3 +16,4 @@ caffeine cache vs ehcache <br>
 [Spring Data Mongo](https://github.com/albbloomer/back/tree/main/store-infrastructure/store-mongo/src/main/java/com/company/store/infrastructure/mongo) <br>
 [Redis Test Setting](https://github.com/albbloomer/back/tree/main/store-infrastructure/store-redis/src/test/java/com/company/store) <br>
 [Spring thymeleaf](https://github.com/albbloomer/back/tree/main/store-cms) <br>
+[Spring Swagger](https://github.com/albbloomer/back/blob/main/external-api/src/main/java/com/company/external/config/SwaggerConfig.java) <br> 
