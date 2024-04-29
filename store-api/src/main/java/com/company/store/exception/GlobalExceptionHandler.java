@@ -22,6 +22,10 @@ public class GlobalExceptionHandler {
         return ErrorResponseDto.of(HttpStatus.BAD_REQUEST, e.getMessage());
     }
 
+    /**
+     * @ResponseStatus 가 존재하지 않으면 상태코드가 200 으로 나감
+     */
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(BusinessException.class)
     public ErrorResponseDto handleBusinessException(final BusinessException e) {
         log.error("[{}]", e.getMessage(), e);
