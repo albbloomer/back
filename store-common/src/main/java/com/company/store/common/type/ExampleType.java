@@ -18,4 +18,13 @@ public enum ExampleType {
             default -> throw new ExampleException("No supported point types.");
         };
     }
+
+    /**
+     *     public static ExampleType getValue(final String type) {
+     *         return Arrays.stream(values())
+     *                 .filter(enumConstant -> enumConstant.type.equalsIgnoreCase(type))
+     *                 .findFirst()
+     *                 .orElseThrow(() -> new ExampleException("No supported point types."));
+     *     }
+     */
 }
