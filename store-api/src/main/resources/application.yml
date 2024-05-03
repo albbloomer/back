@@ -4,3 +4,5 @@ spring:
     group:
       local:
         - circuit
+server:
+  port: 8088
