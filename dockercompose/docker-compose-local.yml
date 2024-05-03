@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  store-redis-local:
+    image: redis:7.0.7
+    container_name: store-redis-local
+    restart: always
+    ports:
+      - "6380:6379"
+    volumes:
+      - ./redis/data:/data
+      - ./redis/conf/redis.conf:/usr/local/conf/redis.conf
+    labels:
+      - "name=redis"
+      - "mode=standalone"
+  store-mongodb-local:
+    image: mongo:6.0
+    container_name: store-mongodb-local
+    restart: always
+    env_file:
+      - .env.db
+    ports:
+      - "27017:27017"
+    volumes:
+      - store-mongodb-local:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./mongod.conf:/etc/mongod.conf
+    healthcheck:
+      test: echo 'db.stats().ok' | mongo mongodb:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+
+volumes:
+  store-mongodb-local:
