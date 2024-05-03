@@ -1,0 +1,123 @@
+version: '3.9'
+
+services:
+  zookeeper-1:
+    container_name: zookeeper-1
+    hostname: zookeeper1
+    image: wurstmeister/zookeeper:latest
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_SERVER_ID: 1
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_DATA_DIR: /zookeeper/data
+      ZOOKEEPER_SERVERS: zookeeper1:2888:3888;zookeeper2:2888:3888
+      # 왼쪽 port가 리더 승격을 위한, 투표 포트, 오른쪽이 데이터 송수신을 위한 포트
+    volumes:
+      - ./zookeeper/data/1:/zookeeper/data
+    networks:
+      - kafka-net
+
+  zookeeper-2:
+    container_name: zookeeper-2
+    hostname: zookeeper2
+    image: wurstmeister/zookeeper:latest
+    ports:
+      - "2182:2182"
+    environment:
+      ZOOKEEPER_SERVER_ID: 2
+      ZOOKEEPER_CLIENT_PORT: 2182
+      ZOOKEEPER_DATA_DIR: /zookeeper/data
+      ZOOKEEPER_SERVERS: zookeeper1:2888:3888;zookeeper2:2888:3888
+    volumes:
+      - ./zookeeper/data/2:/zookeeper/data
+    networks:
+      - kafka-net
+
+  kafka-1:
+    container_name: kafka-1
+    hostname: kafka1
+    image: wurstmeister/kafka:2.12-2.3.0
+    depends_on:
+      - zookeeper-1
+      - zookeeper-2
+    ports:
+      - "9092:9092"
+      - "19092:19092"
+    environment:
+      KAFKA_LISTENERS: INSIDE://0.0.0.0:19092,OUTSIDE://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka1:19092,OUTSIDE://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper1:2181,zookeeper2:2182"
+      KAFKA_BROKER_ID: 1
+      KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
+      KAFKA_CREATE_TOPICS: "STROE-TEST:1:1" # Topic명:Partition개수:Replica개수
+      KAFKA_LOG_DIRS: /kafka/data
+    healthcheck:
+      test: [ "CMD", "nc", "-z", "localhost", "9092" ]
+      start_period: 20s
+    volumes:
+      - ./kafka/logs/1:/kafka/data
+    networks:
+      - kafka-net
+
+  kafka-2:
+    container_name: kafka-2
+    hostname: kafka2
+    image: wurstmeister/kafka:2.12-2.3.0
+    depends_on:
+      - zookeeper-1
+      - zookeeper-2
+    ports:
+      - "9093:9093"
+      - "29092:29092"
+    environment:
+      KAFKA_LISTENERS: INSIDE://0.0.0.0:29092,OUTSIDE://0.0.0.0:9093
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka2:29092,OUTSIDE://localhost:9093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper1:2181,zookeeper2:2182"
+      KAFKA_BROKER_ID: 2
+      KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
+      KAFKA_CREATE_TOPICS: "STORE-TEST:1:1" # Topic명:Partition개수:Replica개수
+      KAFKA_LOG_DIRS: /kafka/data
+    healthcheck:
+      test: [ "CMD", "nc", "-z", "localhost", "9093" ]
+      start_period: 20s
+    volumes:
+      - ./kafka/logs/2:/kafka/data
+    networks:
+      - kafka-net
+
+  kafdrop:
+    image: obsidiandynamics/kafdrop
+    ports:
+      - "9001:9000"
+    environment:
+      KAFKA_BROKERCONNECT: "kafka-1:19092, kafka-2:29092"
+    depends_on:
+      - zookeeper-1
+      - zookeeper-2
+      - kafka-1
+      - kafka-2
+    networks:
+      - kafka-net
+
+  redis:
+    platform: linux/amd64
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    entrypoint: redis-server --appendonly yes
+
+volumes:
+  redis:
+    driver: local
+
+networks:
+  kafka-net:
+    external: true
+  kafka-net-backup:
+    external: true
