@@ -1,4 +1,4 @@
-package com.company.store.infrastructure.redis.service;
+package com.company.store.infrastructure.redis.service.base;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.connection.DataType;

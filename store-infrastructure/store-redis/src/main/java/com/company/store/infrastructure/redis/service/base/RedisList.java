@@ -1,4 +1,4 @@
-package com.company.store.infrastructure.redis.service;
+package com.company.store.infrastructure.redis.service.base;
 
 import io.lettuce.core.api.async.RedisAsyncCommands;
 import org.springframework.beans.factory.annotation.Qualifier;

@@ -2,6 +2,7 @@ package com.company.store.infrastructure.redis.service;
 
 import com.company.store.infrastructure.redis.TestContainerConfig;
 import com.company.store.infrastructure.redis.config.RedisConfig;
+import com.company.store.infrastructure.redis.service.base.RedisString;
 import org.junit.jupiter.api.Test;
 
 import org.junit.jupiter.api.extension.ExtendWith;

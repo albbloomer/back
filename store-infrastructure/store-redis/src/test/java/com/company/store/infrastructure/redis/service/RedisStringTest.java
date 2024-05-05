@@ -2,6 +2,7 @@ package com.company.store.infrastructure.redis.service;
 
 import com.company.store.infrastructure.redis.EmbeddedRedisTestConfig;
 import com.company.store.infrastructure.redis.config.RedisConfig;
+import com.company.store.infrastructure.redis.service.base.RedisString;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
