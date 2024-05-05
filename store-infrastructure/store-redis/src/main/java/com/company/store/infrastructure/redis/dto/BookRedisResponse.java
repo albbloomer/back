@@ -1,9 +1,11 @@
 package com.company.store.infrastructure.redis.dto;
 
 import com.company.store.domain.book.Book;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.time.LocalDateTime;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class BookRedisResponse {
 
     private Long id;
