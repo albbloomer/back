@@ -6,6 +6,8 @@ import com.company.store.infrastructure.jpa.mapper.BookMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Transactional
 @Repository
 public class BookRepository {
@@ -25,5 +27,12 @@ public class BookRepository {
         BookJpaEntity bookJpaEntity = bookJpaRepository.save(BookMapper.toJpaEntity(book));
 
         return ; //
+    }
+
+    public List<Book> findAll() {
+        List<BookJpaEntity> bookList = bookJpaRepository.findAll();
+        return bookList.stream()
+                .map(BookMapper::toDomain)
+                .toList();
     }
 }

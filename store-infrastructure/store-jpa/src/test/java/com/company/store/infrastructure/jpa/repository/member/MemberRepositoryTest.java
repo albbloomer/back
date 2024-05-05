@@ -24,7 +24,7 @@ class MemberRepositoryTest {
     class 저장할때 {
 
         @Test
-        void 저상적으로_저장된다() {
+        void 정상적으로_저장된다() {
             // given
             final String name = "minyul";
             final Long id = 2423L;

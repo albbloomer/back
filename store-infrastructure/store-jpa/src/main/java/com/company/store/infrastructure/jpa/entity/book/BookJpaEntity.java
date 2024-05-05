@@ -53,6 +53,10 @@ public class BookJpaEntity extends BaseJpaEntity {
         return name;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
     public void validateBook(final Integer id, final String name, final String author) {
         if (StringUtils.isBlank(name)) {
             throw new ValidateDataException("책 생성에 실패했습니다.");

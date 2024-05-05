@@ -9,6 +9,13 @@ public class BookMapper {
         //
     }
 
+    public static Book toDomain(final BookJpaEntity bookJpaEntity) {
+        return new Book(
+                bookJpaEntity.getName(),
+                bookJpaEntity.getAuthor()
+        );
+    }
+
     public static BookJpaEntity toJpaEntity(final Book book) {
         return new BookJpaEntity(
                 book.getName(),
