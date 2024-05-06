@@ -1,6 +1,7 @@
 package com.company.store.infrastructure.jpa.entity.member;
 
 import com.company.store.infrastructure.jpa.base.BaseJpaEntity;
+import com.company.store.infrastructure.jpa.entity.team.TeamJpaEntity;
 import jakarta.persistence.*;
 
 @Entity
@@ -15,8 +16,16 @@ public class MemberJpaEntity extends BaseJpaEntity {
     @Column(length = 100, nullable = false)
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private TeamJpaEntity team;
+
     protected MemberJpaEntity() {
         //
+    }
+
+    public TeamJpaEntity getTeam() {
+        return team;
     }
 
     public MemberJpaEntity(String name) {

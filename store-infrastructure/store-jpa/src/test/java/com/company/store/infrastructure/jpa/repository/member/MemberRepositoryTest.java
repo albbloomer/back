@@ -27,7 +27,7 @@ class MemberRepositoryTest {
         void 정상적으로_저장된다() {
             // given
             final String name = "minyul";
-            final Long id = 2423L;
+            final Long id = 1L;
             final Member member = new Member(id, name);
 
             // when
