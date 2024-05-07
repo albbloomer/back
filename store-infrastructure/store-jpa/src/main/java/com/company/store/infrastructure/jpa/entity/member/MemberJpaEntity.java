@@ -1,8 +1,12 @@
 package com.company.store.infrastructure.jpa.entity.member;
 
 import com.company.store.infrastructure.jpa.base.BaseJpaEntity;
+import com.company.store.infrastructure.jpa.entity.middle.MemberProduct;
 import com.company.store.infrastructure.jpa.entity.team.TeamJpaEntity;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "member")
@@ -19,6 +23,10 @@ public class MemberJpaEntity extends BaseJpaEntity {
     @ManyToOne
     @JoinColumn(name = "team_id")
     private TeamJpaEntity team;
+
+    @OneToMany(mappedBy = "member")
+    private final List<MemberProduct> memberProducts = new ArrayList<>();
+
 
     protected MemberJpaEntity() {
         //
