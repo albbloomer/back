@@ -1,0 +1,33 @@
+version: '3.9'
+services:
+  db1:
+    image: mysql:8.0
+    container_name: mysql-variance1
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      TZ: Asia/Seoul
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql-init-files/db1/:/docker-entrypoint-initdb.d
+      - db1-data:/var/lib/mysql
+    platform: linux/x86_64
+
+  db2:
+    image: mysql:8.0
+    container_name: mysql-variance2
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      TZ: Asia/Seoul
+    ports:
+      - 3307:3306
+    volumes:
+      - ./mysql-init-files/db2/:/docker-entrypoint-initdb.d
+      - db2-data:/var/lib/mysql
+    platform: linux/x86_64
+
+volumes:
+  db1-data:
+  db2-data:
