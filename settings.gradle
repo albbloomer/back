@@ -21,4 +21,5 @@ include 'memo-api'
 include 'store-infrastructure:store-mongo'
 findProject(':store-infrastructure:stroe-mongo')?.name = 'stroe-mongo'
 include 'store-cms'
+include 'variance'
 
