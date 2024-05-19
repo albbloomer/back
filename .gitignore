@@ -40,3 +40,5 @@ out/
 ### docker-compose file
 /dockercompose/zookeeper
 /dockercompose/kafka
+
+base-tapi/target
