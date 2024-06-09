@@ -22,4 +22,6 @@ include 'store-infrastructure:store-mongo'
 findProject(':store-infrastructure:stroe-mongo')?.name = 'stroe-mongo'
 include 'store-cms'
 include 'variance'
+include 'store-infrastructure:store-mybatis'
+findProject(':store-infrastructure:store-mybatis')?.name = 'store-mybatis'
 

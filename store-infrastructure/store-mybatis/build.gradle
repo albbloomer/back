@@ -1,0 +1,20 @@
+bootJar {
+    enabled = false
+}
+jar {
+    enabled = true
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'com.mysql:mysql-connector-j'
+
+    implementation(project(':store-domain'))
+    implementation(project(':store-common'))
+
+    implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2"
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+}
