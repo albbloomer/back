@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    yul:
+      v0:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://127.0.0.1:3310/Store?autoReconnect=true&useSSL=false&characterEncoding=utf8&allowPublicKeyRetrieval=true
+        username: root
+        password: root
+        poolName: storeV0Db
+      v1:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://127.0.0.1:3311/Store?autoReconnect=true&useSSL=false&characterEncoding=utf8&allowPublicKeyRetrieval=true
+        username: root
+        password: root
+        poolName: storeV1Db
+      v2:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://127.0.0.1:3312/Store?autoReconnect=true&useSSL=false&characterEncoding=utf8&allowPublicKeyRetrieval=true
+        username: root
+        password: root
+        poolName: storeV2Db
