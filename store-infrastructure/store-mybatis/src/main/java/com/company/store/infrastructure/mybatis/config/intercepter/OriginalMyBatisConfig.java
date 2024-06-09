@@ -1,4 +1,14 @@
 package com.company.store.infrastructure.mybatis.config.intercepter;
 
-public class OriginalMyBatisConfig {
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+public class OriginalMyBatisConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new DataSourceInterceptor());
+    }
 }
