@@ -16,7 +16,7 @@
 [Spring thymeleaf](https://github.com/albbloomer/back/tree/main/store-cms) <br>
 [Spring Swagger](https://github.com/albbloomer/back/blob/main/external-api/src/main/java/com/company/external/config/SwaggerConfig.java) <br>
 [JPA TEST SetUp](https://github.com/albbloomer/back/blob/main/store-infrastructure/store-jpa/src/test/java/com/company/store/infrastructure/jpa/repository/book/BookRepositoryTest.java) <br>
-
+[Daily Best Code]() <br>
 <br>
 
 [docker-compose](https://github.com/albbloomer/back/tree/main/dockercompose) <br>
