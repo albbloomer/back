@@ -16,7 +16,10 @@ import javax.sql.DataSource;
 @Configuration
 @MapperScan(
         sqlSessionFactoryRef = "sqlSessionFactory",
-        basePackages = "com.company.store.infrastructure.mybatis.repository.point",
+        basePackages = {
+                "com.company.store.infrastructure.mybatis.repository.point",
+                "com.company.store.infrastructure.mybatis.repository.book"
+        },
         annotationClass = Mapper.class
 )
 public class MyBatisConfig {
