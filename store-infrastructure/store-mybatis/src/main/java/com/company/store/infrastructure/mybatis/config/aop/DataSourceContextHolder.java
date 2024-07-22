@@ -1,14 +1,16 @@
 package com.company.store.infrastructure.mybatis.config.aop;
 
+import com.company.store.infrastructure.mybatis.config.database.DatabaseReplicationType;
+
 public class DataSourceContextHolder {
 
-    private static final ThreadLocal<String> contextHolder = new ThreadLocal<>();
+    private static final ThreadLocal<DatabaseReplicationType> contextHolder = new ThreadLocal<>();
 
-    public static void setDataSourceKey(String dataSourceKey) {
+    public static void setDataSourceKey(DatabaseReplicationType dataSourceKey) {
         contextHolder.set(dataSourceKey);
     }
 
-    public static String getDataSourceKey() {
+    public static DatabaseReplicationType getDataSourceKey() {
         return contextHolder.get();
     }
 

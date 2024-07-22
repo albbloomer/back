@@ -1,18 +1,29 @@
 package com.company.store.infrastructure.mybatis.config.aop;
 
+import com.company.store.infrastructure.mybatis.annotation.StoreV2DataSource;
+import com.company.store.infrastructure.mybatis.config.database.DatabaseReplicationType;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
-@Aspect
 @Component
+@Aspect
 public class DataSourceAspect {
 
-    private static final Logger logger = LoggerFactory.getLogger(DataSourceAspect.class);
+    @Before("@annotation(storeV2DataSource)")
+    public void beforeApiCall(StoreV2DataSource storeV2DataSource) {
+        DataSourceContextHolder.setDataSourceKey(DatabaseReplicationType.V2);
+        DatabaseReplicationType dataSourceKey = DataSourceContextHolder.getDataSourceKey();
+        if (dataSourceKey != null) {
+            TransactionSynchronizationManager.setCurrentTransactionName(dataSourceKey.name());
+        }
+    }
 
-    // Before
-
-    // After
+    @AfterReturning("@annotation(storeV2DataSource)")
+    public void afterApiCall(StoreV2DataSource storeV2DataSource) {
+        DataSourceContextHolder.clearDataSourceKey();
+        TransactionSynchronizationManager.setCurrentTransactionName(null);
+    }
 }
