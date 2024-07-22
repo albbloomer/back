@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
 
 @Configuration
 public class YulDataSourceConfig extends BaseDataSource {
@@ -38,11 +39,17 @@ public class YulDataSourceConfig extends BaseDataSource {
     @ConfigurationProperties(prefix = "spring.datasource.yul.v2")
     @Bean(name = "v2DataSourceA")
     public DataSource v2DataSourceA() {
-        return DataSourceBuilder.create().type(HikariDataSource.class).build();
+        return DataSourceBuilder.create()
+                .type(HikariDataSource.class).build();
     }
 
     @Bean(name = "v2DataSource")
     public DataSource v2DataSource(@Qualifier("v2DataSourceA") DataSource v2DataSourceA) {
-        return new LazyConnectionDataSourceProxy(v2DataSourceA);
+        try {
+            Connection connection = v2DataSourceA.getConnection();
+            return new LazyConnectionDataSourceProxy(v2DataSourceA);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

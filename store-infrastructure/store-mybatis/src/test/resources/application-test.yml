@@ -18,4 +18,4 @@ spring:
         jdbcUrl: jdbc:mysql://127.0.0.1:3312/Store?autoReconnect=true&useSSL=false&characterEncoding=utf8&allowPublicKeyRetrieval=true
         username: root
         password: root
-        poolName: storeV
+        poolName: storeV2Db
