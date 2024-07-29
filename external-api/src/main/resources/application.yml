@@ -3,6 +3,8 @@
 api:
   github:
     list: https://api.github.com
+  yul:
+    http://localhost:9090/path
 
 
 resilience4j.retry:
