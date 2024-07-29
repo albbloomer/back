@@ -17,6 +17,7 @@
 [Spring Swagger](https://github.com/albbloomer/back/blob/main/external-api/src/main/java/com/company/external/config/SwaggerConfig.java) <br>
 [JPA TEST SetUp](https://github.com/albbloomer/back/blob/main/store-infrastructure/store-jpa/src/test/java/com/company/store/infrastructure/jpa/repository/book/BookRepositoryTest.java) <br>
 [Daily Best Code](https://github.com/albbloomer/back/blob/main/store-api/src/main/java/com/company/store/book/service/DailyCode.java) <br>
+[Feign Not Escape Request](https://github.com/albbloomer/back/commit/38dc7ac8d2232e24ff358a3a5088cb1b2d011973) <br>
 <br>
 
 [docker-compose](https://github.com/albbloomer/back/tree/main/dockercompose) <br>
