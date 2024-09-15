@@ -24,4 +24,5 @@ include 'store-cms'
 include 'variance'
 include 'store-infrastructure:store-mybatis'
 findProject(':store-infrastructure:store-mybatis')?.name = 'store-mybatis'
+include 'process-streams'
 
