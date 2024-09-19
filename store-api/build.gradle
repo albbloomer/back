@@ -51,6 +51,9 @@ dependencies {
 
     // testFixture
     testImplementation(testFixtures(project(":store-domain")))
+
+    // access log
+    implementation 'net.rakugakibox.spring.boot:logback-access-spring-boot-starter:2.7.1'
 }
 
 tasks.named('test') {

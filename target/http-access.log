@@ -1,0 +1,26 @@
+2024-09-20 00:16:13	0:0:0:0:0:0:0:1	GET /api/v1/book/test HTTP/1.1	200	-	PostmanRuntime/7.37.3	130	http-nio-8088-exec-2
+                GET /api/v1/book/test HTTP/1.1
+user-agent: PostmanRuntime/7.37.3
+accept: */*
+postman-token: 346282ea-0efa-4c3d-8c9a-b19d7947481d
+host: localhost:8088
+accept-encoding: gzip, deflate, br
+connection: keep-alive
+
+
+HTTP/1.1 200 OK
+X-Frame-Options: DENY
+Transfer-Encoding: chunked
+Keep-Alive: timeout=60
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+X-Content-Type-Options: nosniff
+Connection: keep-alive
+Vary: Origin
+Pragma: no-cache
+Expires: 0
+X-XSS-Protection: 0
+Date: Thu, 19 Sep 2024 15:16:13 GMT
+Content-Type: application/json
+
+
+
