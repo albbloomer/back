@@ -1,0 +1,17 @@
+server:
+  port: 9029
+
+spring:
+  application:
+    name: economics-app
+  datasource:
+    url: jdbc:postgresql://localhost:5432/yourDatabaseName
+    username: yourUsername
+    password: yourPassword
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  profiles:
+    active: local
