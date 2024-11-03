@@ -16,7 +16,7 @@
 [Daily Best Code](https://github.com/albbloomer/back/blob/main/store-api/src/main/java/com/company/store/book/service/DailyCode.java) <br>
 [Feign Not Escape Request](https://github.com/albbloomer/back/commit/38dc7ac8d2232e24ff358a3a5088cb1b2d011973) <br>
 <br>
-[Kotlin Ground](https://github.com/albbloomer/back/commit/38dc7ac8d2232e24ff358a3a5088cb1b2d011973) <br>
+[Kotlin Ground](https://github.com/albbloomer/back/tree/main/economics) <br>
 
 <br>
 
