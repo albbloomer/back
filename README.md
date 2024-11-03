@@ -1,6 +1,3 @@
-<h2> why ? </h2>
-
-[why ? 어떠한 이유로 이러한 기술, 코딩을 선택했는가?](https://github.com/albbloomer/whytech)
 
 <h2> Section </h2>
 
@@ -18,6 +15,9 @@
 [JPA TEST SetUp](https://github.com/albbloomer/back/blob/main/store-infrastructure/store-jpa/src/test/java/com/company/store/infrastructure/jpa/repository/book/BookRepositoryTest.java) <br>
 [Daily Best Code](https://github.com/albbloomer/back/blob/main/store-api/src/main/java/com/company/store/book/service/DailyCode.java) <br>
 [Feign Not Escape Request](https://github.com/albbloomer/back/commit/38dc7ac8d2232e24ff358a3a5088cb1b2d011973) <br>
+<br>
+[Kotlin Ground](https://github.com/albbloomer/back/commit/38dc7ac8d2232e24ff358a3a5088cb1b2d011973) <br>
+
 <br>
 
 [docker-compose](https://github.com/albbloomer/back/tree/main/dockercompose) <br>
