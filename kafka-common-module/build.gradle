@@ -8,7 +8,7 @@ group = 'com.company.store'
 version = '0.0.1'
 
 java {
-    sourceCompatibility = '21'
+    sourceCompatibility = '17'
 }
 
 bootJar {
@@ -25,6 +25,9 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.springframework.kafka:spring-kafka' // Kafka 의존성
+    implementation 'com.fasterxml.jackson.core:jackson-databind'  // JSON 직렬화/역직렬화
+
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
