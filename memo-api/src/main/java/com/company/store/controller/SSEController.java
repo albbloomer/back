@@ -26,8 +26,6 @@ public class SSEController {
      */
     @GetMapping(value = "/events", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> streamEvents(@RequestParam("userId") Long userId, @RequestParam("projectId") Long projectId) {
-        // 구독을 요청하면, 서비스에서 해당 프로젝트에 대한 구독을 처리하고
-        // fakeKafkaData를 2초마다 호출하여 임의의 데이터를 발행
         sseService.fakeKafkaData(projectId);
 
         return sseService.subscribe(userId, projectId);

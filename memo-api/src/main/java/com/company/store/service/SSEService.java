@@ -55,10 +55,7 @@ public class SSEService {
         String projectTopic = "project:topic:" + projectKey.split(":")[1];
         messageListenerContainer.receive(ChannelTopic.of(projectTopic))
                 .map(message -> message.getMessage().toString())
-                .subscribe(message -> {
-                    // 메시지가 Redis에서 수신되면, 이를 모든 구독자에게 전달
-                    // 실제 구독자에게 데이터를 전송하는 로직은 이곳에 위치
-                });
+                .subscribe(System.out::println);
     }
 
     /**
