@@ -1,0 +1,25 @@
+kafka:
+  bootstrap-servers: localhost:9092 # Kafka 브로커 주소 (필요 시 클러스터의 모든 노드 추가)
+  group-id: consumer-group-id       # Kafka Consumer Group ID
+  key-serializer: org.apache.kafka.common.serialization.StringSerializer
+  value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+  consumer:
+    enable-auto-commit: false       # 메시지 수동 커밋 설정
+    auto-offset-reset: earliest     # 새로운 Consumer가 시작할 때 Offset 초기화 전략 (earliest, latest)
+    max-poll-records: 100           # 한 번의 Poll에서 가져올 메시지 최대 개수
+    properties:
+      spring.deserializer.value.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+
+  producer:
+    retries: 3                      # 프로듀서 메시지 전송 실패 시 재시도 횟수
+    acks: all                       # 메시지가 모든 브로커에 저장될 때까지 기다림
+    batch-size: 16384               # 배치당 메시지 크기 (bytes)
+    linger-ms: 1                    # 배치 대기 시간 (ms)
+    buffer-memory: 33554432         # 프로듀서 버퍼 메모리 크기 (bytes)
+
+  listener:
+    concurrency: 3                  # 동시에 실행될 Kafka Listener 스레드 수
+    poll-timeout: 3000              # Kafka Listener의 Poll 타임아웃 (ms)
