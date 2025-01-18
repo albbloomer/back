@@ -1,6 +1,6 @@
 kafka:
-  bootstrap-servers: localhost:9092 # Kafka 브로커 주소 (필요 시 클러스터의 모든 노드 추가)
-  group-id: consumer-group-id       # Kafka Consumer Group ID
+  bootstrap-servers: localhost:10000,localhost:10001,localhost:10002  # Docker 네트워크 상의 Kafka 브로커 이름 사용
+  group-id: consumer-group-id     # Kafka Consumer Group ID
   key-serializer: org.apache.kafka.common.serialization.StringSerializer
   value-serializer: org.apache.kafka.common.serialization.StringSerializer
   key-deserializer: org.apache.kafka.common.serialization.StringDeserializer

@@ -28,4 +28,3 @@ include 'process-streams'
 
 include 'economics'
 include 'kafka-common-module'
-
