@@ -2,5 +2,6 @@ services:
   redisA:
     image: redis:latest
     container_name: redisA
-    network_mode: host # 호스트 네트워크 사용
+    ports:
+      - "6380:6379"  # 외부에서 6380으로 연결, 내부는 6379
     command: ["redis-server", "--appendonly", "yes"]
