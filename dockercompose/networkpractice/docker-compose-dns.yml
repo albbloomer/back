@@ -1,0 +1,12 @@
+services:
+  redisD:
+    image: redis:latest
+    container_name: redisD
+    networks:
+      custom_network:
+        aliases:
+          - redis.local # DNS 별칭 지정
+
+networks:
+  custom_network:
+    driver: bridge

@@ -1,0 +1,13 @@
+services:
+  redisE:
+    image: redis:latest
+    container_name: redisE
+    networks:
+      - network1
+      - network2
+
+networks:
+  network1:
+    driver: bridge
+  network2:
+    driver: bridge

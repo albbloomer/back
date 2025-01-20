@@ -1,0 +1,11 @@
+services:
+  redisC:
+    image: redis:latest
+    container_name: redisC
+    networks:
+      - isolated_network
+
+networks:
+  isolated_network:
+    driver: bridge
+    internal: true # 외부 접근 차단

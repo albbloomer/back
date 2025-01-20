@@ -1,0 +1,12 @@
+services:
+  redisB:
+    image: redis:latest
+    container_name: redisB
+    networks:
+      - default_bridge
+    ports:
+      - "6380:6379" # 외부에서 접근하려면 포트 매핑
+
+networks:
+  default_bridge:
+    driver: bridge
