@@ -1,82 +1,102 @@
-version: "3.9"
-
 services:
   redis-master:
-    image: redis:7.2
-    container_name: redis-master
-    ports:
-      - "6379:6379"
-    command: ["redis-server", "--requirepass", "masterpass", "--appendonly", "yes"]
-    networks:
-      - redis-net
-
-  redis-slave-1:
-    image: redis:7.2
-    container_name: redis-slave-1
-    depends_on:
-      - redis-master
-    command: [
-      "redis-server",
-      "--replicaof", "redis-master", "6379",
-      "--requirepass", "slavepass",
-      "--masterauth", "masterpass"
-    ]
-    networks:
-      - redis-net
-
-  redis-slave-2:
-    image: redis:7.2
-    container_name: redis-slave-2
-    depends_on:
-      - redis-master
-    command: [
-      "redis-server",
-      "--replicaof", "redis-master", "6379",
-      "--requirepass", "slavepass",
-      "--masterauth", "masterpass"
-    ]
-    networks:
-      - redis-net
-
-  sentinel-1:
-    image: redis:7.2
-    container_name: redis-sentinel-1
-    depends_on:
-      - redis-master
-    ports:
-      - "26379:26379"
-    command: redis-sentinel /etc/sentinel.conf
+    container_name: master
+    image: redis
+    platform: linux/amd64
+    command: redis-server --port 6379
     volumes:
-      - ./sentinel-1.conf:/etc/sentinel.conf
-    networks:
-      - redis-net
+      - "./master:/data"
+    network_mode: host
+    extra_hosts:
+      - "redis-master:127.0.0.1"
+      - "redis-replica1:127.0.0.1"
+      - "redis-replica2:127.0.0.1"
+      - "redis-sentinel1:127.0.0.1"
+      - "redis-sentinel2:127.0.0.1"
+      - "redis-sentinel3:127.0.0.1"
 
-  sentinel-2:
-    image: redis:7.2
-    container_name: redis-sentinel-2
-    depends_on:
-      - redis-master
-    ports:
-      - "26380:26379"
-    command: redis-sentinel /etc/sentinel.conf
+  redis-replica1:
+    container_name: replica1
+    image: redis
+    platform: linux/amd64
+    command: redis-server --replicaof redis-master 6379 --port 6383
     volumes:
-      - ./sentinel-2.conf:/etc/sentinel.conf
-    networks:
-      - redis-net
+      - "./replica1:/data"
+    network_mode: host
+    extra_hosts:
+      - "redis-master:127.0.0.1"
+      - "redis-replica1:127.0.0.1"
+      - "redis-replica2:127.0.0.1"
+      - "redis-sentinel1:127.0.0.1"
+      - "redis-sentinel2:127.0.0.1"
+      - "redis-sentinel3:127.0.0.1"
 
-  sentinel-3:
-    image: redis:7.2
-    container_name: redis-sentinel-3
-    depends_on:
-      - redis-master
-    ports:
-      - "26381:26379"
-    command: redis-sentinel /etc/sentinel.conf
+  redis-replica2:
+    container_name: replica2
+    image: redis
+    platform: linux/amd64
+    command: redis-server --replicaof redis-master 6379 --port 6384
     volumes:
-      - ./sentinel-3.conf:/etc/sentinel.conf
-    networks:
-      - redis-net
+      - "./replica2:/data"
+    network_mode: host
+    extra_hosts:
+      - "redis-master:127.0.0.1"
+      - "redis-replica1:127.0.0.1"
+      - "redis-replica2:127.0.0.1"
+      - "redis-sentinel1:127.0.0.1"
+      - "redis-sentinel2:127.0.0.1"
+      - "redis-sentinel3:127.0.0.1"
 
-networks:
-  redis-net:
-    driver: bridge
+  redis-sentinel1:
+    container_name: sentinel1
+    build:
+      context: ./sentinel
+    ports:
+      - "5500:26379"
+    environment:
+      - SENTINEL_QUORUM=2
+      - SENTINEL_DOWN_AFTER=1000
+      - SENTINEL_FAILOVER=1000
+    extra_hosts:
+      - "redis-master:127.0.0.1"
+      - "redis-replica1:127.0.0.1"
+      - "redis-replica2:127.0.0.1"
+      - "redis-sentinel1:127.0.0.1"
+      - "redis-sentinel2:127.0.0.1"
+      - "redis-sentinel3:127.0.0.1"
+
+  redis-sentinel2:
+    container_name: sentinel2
+    build:
+      context: ./sentinel
+    ports:
+      - "5501:26379"
+    environment:
+      - SENTINEL_QUORUM=2
+      - SENTINEL_DOWN_AFTER=1000
+      - SENTINEL_FAILOVER=1000
+    extra_hosts:
+      - "redis-master:127.0.0.1"
+      - "redis-replica1:127.0.0.1"
+      - "redis-replica2:127.0.0.1"
+      - "redis-sentinel1:127.0.0.1"
+      - "redis-sentinel2:127.0.0.1"
+      - "redis-sentinel3:127.0.0.1"
+
+  redis-sentinel3:
+    container_name: sentinel3
+    build:
+      context: ./sentinel
+    ports:
+      - "5502:26379"
+    environment:
+      - SENTINEL_QUORUM=2
+      - SENTINEL_DOWN_AFTER=1000
+      - SENTINEL_FAILOVER=1000
+    extra_hosts:
+      - "redis-master:127.0.0.1"
+      - "redis-replica1:127.0.0.1"
+      - "redis-replica2:127.0.0.1"
+      - "redis-sentinel1:127.0.0.1"
+      - "redis-sentinel2:127.0.0.1"
+      - "redis-sentinel3:127.0.0.1"
