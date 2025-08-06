@@ -1,0 +1,82 @@
+version: "3.9"
+
+services:
+  redis-master:
+    image: redis:7.2
+    container_name: redis-master
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--requirepass", "masterpass", "--appendonly", "yes"]
+    networks:
+      - redis-net
+
+  redis-slave-1:
+    image: redis:7.2
+    container_name: redis-slave-1
+    depends_on:
+      - redis-master
+    command: [
+      "redis-server",
+      "--replicaof", "redis-master", "6379",
+      "--requirepass", "slavepass",
+      "--masterauth", "masterpass"
+    ]
+    networks:
+      - redis-net
+
+  redis-slave-2:
+    image: redis:7.2
+    container_name: redis-slave-2
+    depends_on:
+      - redis-master
+    command: [
+      "redis-server",
+      "--replicaof", "redis-master", "6379",
+      "--requirepass", "slavepass",
+      "--masterauth", "masterpass"
+    ]
+    networks:
+      - redis-net
+
+  sentinel-1:
+    image: redis:7.2
+    container_name: redis-sentinel-1
+    depends_on:
+      - redis-master
+    ports:
+      - "26379:26379"
+    command: redis-sentinel /etc/sentinel.conf
+    volumes:
+      - ./sentinel-1.conf:/etc/sentinel.conf
+    networks:
+      - redis-net
+
+  sentinel-2:
+    image: redis:7.2
+    container_name: redis-sentinel-2
+    depends_on:
+      - redis-master
+    ports:
+      - "26380:26379"
+    command: redis-sentinel /etc/sentinel.conf
+    volumes:
+      - ./sentinel-2.conf:/etc/sentinel.conf
+    networks:
+      - redis-net
+
+  sentinel-3:
+    image: redis:7.2
+    container_name: redis-sentinel-3
+    depends_on:
+      - redis-master
+    ports:
+      - "26381:26379"
+    command: redis-sentinel /etc/sentinel.conf
+    volumes:
+      - ./sentinel-3.conf:/etc/sentinel.conf
+    networks:
+      - redis-net
+
+networks:
+  redis-net:
+    driver: bridge
